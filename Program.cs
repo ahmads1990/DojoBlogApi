@@ -98,4 +98,5 @@ app.MapDelete("/author", async (int id, AppDbContext context) =>
     return Results.NotFound();
 });
 
+app.UseHttpsRedirection();
 app.Run();

@@ -4,6 +4,16 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args); // Register database context
 var connString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connString));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Allow",
+           builder =>
+           {
+               builder.AllowAnyOrigin()
+                      .AllowAnyHeader()
+                      .AllowAnyMethod();
+           });
+});
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
@@ -99,4 +109,5 @@ app.MapDelete("/author", async (int id, AppDbContext context) =>
 });
 
 app.UseHttpsRedirection();
+app.UseCors("Allow");
 app.Run();

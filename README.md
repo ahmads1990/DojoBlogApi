@@ -1,4 +1,4 @@
-# DojoBlog React app 📝
+# DojoBlog minimal api 📝
 
 Asp dotnet minimal api for crud operations on Blogs
 
